@@ -1,0 +1,114 @@
+{
+  "tranches": [
+    "IG",
+    "NonIG",
+    "Junk",
+    "Default"
+  ],
+  "default_idx": 3,
+  "max_fall": {
+    "IG": 3,
+    "NonIG": 2,
+    "Junk": 1
+  },
+  "cascade_stages": {
+    "IG": [
+      "A",
+      "B",
+      "C"
+    ],
+    "NonIG": [
+      "A",
+      "B"
+    ],
+    "Junk": [
+      "A"
+    ]
+  },
+  "upgrade_prob": {
+    "IG": 0.0,
+    "NonIG": 0.04,
+    "Junk": 0.05
+  },
+  "feature_names": [
+    "X0_intercept",
+    "X1_delta_earnings",
+    "X2_delta_yield",
+    "X3_interaction"
+  ],
+  "feature_units_note": "X1/X2 are delta_earnings/delta_yield in PERCENTAGE POINTS (1.0 = 100bp), X3 = X1*X2",
+  "x_train_bounds": {
+    "X1_delta_earnings": [
+      -0.7810676837795593,
+      0.6476016012982474
+    ],
+    "X2_delta_yield": [
+      -0.37043616162190307,
+      0.309090735427538
+    ],
+    "X3_interaction": [
+      -0.2398950514451208,
+      0.044961301290542224
+    ]
+  },
+  "x_train_bounds_note": "Observed min/max of X1/X2/X3 in the training data. Scenarios outside this range are extrapolations the model was never validated on.",
+  "extrapolation_cap_bounds": {
+    "X1_delta_earnings": [
+      -2.3432030513386777,
+      1.942804803894742
+    ],
+    "X2_delta_yield": [
+      -2.0,
+      10.0
+    ],
+    "X3_interaction": [
+      -3.598425771676812,
+      0.6744195193581334
+    ]
+  },
+  "extrapolation_cap_note": "X1/X2/X3 are clamped to these [lo, hi] bounds before scenario prediction, to prevent sigmoid saturation (literal 0%/100%) on extreme inputs. Per-feature, not one shared multiplier -- see config.py for why each was chosen independently.",
+  "beta_hat": {
+    "IG": {
+      "A": [
+        -5.34757400548756,
+        -1.2026217175928862,
+        0.7248806010571293,
+        -0.8813210053502463
+      ],
+      "B": [
+        -1.4525455190902126,
+        -0.6290661905956181,
+        0.6493230699463965,
+        2.312159922843464
+      ],
+      "C": [
+        -0.9490676437717,
+        -0.12353295659750926,
+        -0.8541981448643264,
+        -0.7059371820177424
+      ]
+    },
+    "NonIG": {
+      "A": [
+        -4.169221773278736,
+        -1.1289362169853607,
+        0.9133002893338132,
+        -0.5672342639854363
+      ],
+      "B": [
+        -1.2495274826401457,
+        -0.2934640986894094,
+        0.44966352080639815,
+        -0.9098184118977463
+      ]
+    },
+    "Junk": {
+      "A": [
+        -2.5883689919413295,
+        -0.842751157002782,
+        1.357734366352352,
+        -0.35791083554584074
+      ]
+    }
+  }
+}
